@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import PropTypes from 'prop-types';
-import { HeartIcon } from '@heroicons/react/solid';
+import Link from "next/link";
+import Image from "next/image";
+import PropTypes from "prop-types";
+import { HeartIcon } from "@heroicons/react/solid";
 
 const Card = ({
-  id = '',
-  image = '',
-  title = '',
+  id = "",
+  image = "",
+  title = "",
   guests = 0,
   beds = 0,
   baths = 0,
@@ -24,13 +24,14 @@ const Card = ({
             layout="fill"
             objectFit="cover"
             className="hover:opacity-80 transition"
+            priority
           />
         ) : null}
         <button
           type="button"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
-            if (typeof onClickFavorite === 'function') {
+            if (typeof onClickFavorite === "function") {
               onClickFavorite(id);
             }
           }}
@@ -38,20 +39,20 @@ const Card = ({
         >
           <HeartIcon
             className={`w-7 h-7 drop-shadow-lg transition ${
-              favorite ? 'text-red-500' : 'text-white'
+              favorite ? "text-red-500" : "text-white"
             }`}
           />
         </button>
       </div>
       <div className="mt-2 w-full inline-flex justify-between space-x-4">
         <span className="truncate text-gray-700 font-semibold">
-          {title ?? ''}
+          {title ?? ""}
         </span>
         <span className="shrink-0">
-          {new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(price ?? 0)}{' '}
+          {new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+          }).format(price ?? 0)}{" "}
           <span className="text-gray-500">/night</span>
         </span>
       </div>
