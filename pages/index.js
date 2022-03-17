@@ -1,5 +1,5 @@
 // serverside
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 
 // client-side
 import Layout from "@/components/Layout";
@@ -20,8 +20,6 @@ export default function Home({ homes = [] }) {
     </Layout>
   );
 }
-
-const prisma = new PrismaClient();
 
 export const getServerSideProps = async (ctx) => {
   const homes = await prisma.home.findMany();

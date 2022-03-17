@@ -22,6 +22,11 @@ model Home{
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  // relational fields
+  owner       User     @relation(fields:[ownerId], references: [id])
+  ownerId     String // foreign key
+
+  favoritedBy User[]   @relation(name: "FavoritedHome")
 }
 
 model Account {
@@ -59,8 +64,12 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+
+  // relational fields
   accounts      Account[]
   sessions      Session[]
+  listedHomes   Home[] 
+  favoriteHomes Home[]    @relation("FavoritedHome")
 }
 
 model VerificationToken {

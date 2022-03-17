@@ -4,10 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import nodemailer from "nodemailer";
 
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
-
-// Instantiate Prisma Client
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 export default NextAuth({
   providers: [

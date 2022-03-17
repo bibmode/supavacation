@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import ListingForm from "@/components/ListingForm";
 import axios from "axios";
+import { getSession } from "next-auth/react";
 
 const Create = () => {
   const addHome = (data) => axios.post("/api/homes", data);
@@ -22,6 +23,23 @@ const Create = () => {
       </div>
     </Layout>
   );
+};
+
+// securing this path so only users can access it
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default Create;
